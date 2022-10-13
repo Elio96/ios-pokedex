@@ -26,7 +26,7 @@ class PokemonListViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .red
         title = viewModel.title
-        viewModel.viewDidLoad()
+        viewModel.getPokemon()
         setupCollectionView()
         viewModel.pokemon.bind { _ in
             DispatchQueue.main.async {
@@ -60,6 +60,18 @@ extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (collectionView.bounds.width - 60) / 2
         return CGSize(width: size, height: size)
+    }
+}
+
+extension PokemonListViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentYOffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYOffset
+        
+        if distanceFromBottom < (height * 1.5) {
+            viewModel.getPokemon()
+        }
     }
 }
 

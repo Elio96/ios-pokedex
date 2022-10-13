@@ -10,6 +10,8 @@ import Kingfisher
 
 class PokemonCell: UICollectionViewCell, ReusableView {
     
+    private var downloadImageTask: DownloadTask?
+    
     @ProgrammaticallyConstrained var pokeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -56,12 +58,23 @@ class PokemonCell: UICollectionViewCell, ReusableView {
     func configure(pokemon: PokemonModel) {
         pokemonTitle.text = pokemon.name.capitalized
         if let pokeImageUrl = URL(string: pokemon.sprite.url) {
-            pokeImageView.kf.setImage(with: ImageResource(downloadURL: pokeImageUrl, cacheKey: pokemon.sprite.url))
+            self.downloadImageTask = KingfisherManager.shared.retrieveImage(with: ImageResource(downloadURL: pokeImageUrl, cacheKey: pokemon.sprite.url)) { [weak self] result in
+                switch result {
+                case .success(let retreivedImage):
+                    self?.pokeImageView.image = retreivedImage.image
+                    guard let imageDominantColor = retreivedImage.image.averageColor else { return }
+                    self?.contentView.backgroundColor = imageDominantColor
+                    self?.pokemonTitle.textColor = imageDominantColor.isBright ? .black : .white
+                case .failure(let err):
+                    AlertHandler.show(title: "Errore", message: err.localizedDescription)
+                }
+            }
         }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         pokeImageView.image = nil
+        downloadImageTask?.cancel()
     }
 }

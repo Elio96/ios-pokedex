@@ -11,17 +11,18 @@ final class PokemonViewModel {
     
     var pokemon: Box<[PokemonModel]> = Box([])
     
-    func viewDidLoad() {
-        getPokemon()
-    }
-    
     var title: String {
         return "Pokedex"
     }
     
-    private func getPokemon() {
+    private var inLoading: Bool = false
+    
+    func getPokemon() {
+        guard !inLoading else { return }
+        inLoading = true
         PokemonApiManager.shared.fetchPokemons { [weak self] result in
             guard let self = self else { return }
+            self.inLoading = false
             switch result {
             case .success(let res):
                 self.pokemon.value.append(contentsOf: res)
