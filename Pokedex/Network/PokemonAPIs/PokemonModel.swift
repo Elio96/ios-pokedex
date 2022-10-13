@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias Types = [Type]
+
 struct PokemonModel: Decodable {
     let id: Int
     let name: String
@@ -17,7 +19,7 @@ struct PokemonModel: Decodable {
     let sprite: Sprite
     let abilities: [Ability]
     let moves: [Move]
-    let types: [Type]
+    let types: Types
     let stats: [Stat]
     
     private enum CodingKeys: String, CodingKey {
@@ -54,5 +56,21 @@ struct Stat: Decodable {
     private enum CodingKeys: String, CodingKey {
         case stat
         case baseStat = "base_stat"
+    }
+}
+
+extension Types {
+    var stringTypes: String {
+        map { $0.type.name }.joined(separator: "\n\n")
+    }
+}
+
+extension PokemonModel {
+    var weightString: String {
+        String(format: "%.1f kg", Double(weight) / 10.0)
+    }
+    
+    var heightString: String {
+        String(format: "%.1f m", Double(height) / 10.0)
     }
 }

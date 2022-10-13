@@ -61,6 +61,10 @@ extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
         let size = (collectionView.bounds.width - 60) / 2
         return CGSize(width: size, height: size)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.selectItem(at: indexPath)
+    }
 }
 
 extension PokemonListViewController {

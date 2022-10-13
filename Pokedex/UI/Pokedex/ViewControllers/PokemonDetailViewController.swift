@@ -11,9 +11,12 @@ class PokemonDetailViewController: UIViewController {
     
     @ProgrammaticallyConstrained private var tableView: UITableView = UITableView()
     
+    var viewModel: PokemonDetailViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
+        title = viewModel.title
     }
     
     private func setupTableView() {

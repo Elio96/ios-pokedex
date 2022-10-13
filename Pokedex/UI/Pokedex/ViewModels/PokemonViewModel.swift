@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 final class PokemonViewModel {
+    
+    weak var coordinator: PokedexCoordinator?
     
     var pokemon: Box<[PokemonModel]> = Box([])
     
@@ -38,5 +41,10 @@ final class PokemonViewModel {
     
     func cellForItemAt(indexPath: IndexPath) -> PokemonModel {
         return pokemon.value[indexPath.row]
+    }
+    
+    func selectItem(at indexPath: IndexPath) {
+        let pokemon = pokemon.value[indexPath.row]
+        coordinator?.startPokemonDetailViewController(with: pokemon)
     }
 }

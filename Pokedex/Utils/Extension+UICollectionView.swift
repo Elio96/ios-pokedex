@@ -8,6 +8,13 @@
 import UIKit
 
 extension UICollectionView {
+    
+    func cell<Cell: UICollectionViewCell>(at indexPath: IndexPath) -> Cell {
+        guard let cellItem = cellForItem(at: indexPath) as? Cell else {
+            fatalError("Cell not found: \(Cell.self)")
+        }
+        return cellItem
+    }
     // register a custom collection view cell which conforms to ReusableView protocol
     func register<T: UICollectionViewCell>(_:T.Type) where T: ReusableView {
         register(T.self, forCellWithReuseIdentifier: T.defaultReuseIdentifier)
