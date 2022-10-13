@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PokemonCell: UICollectionViewCell, ReusableView {
     
@@ -18,16 +19,16 @@ class PokemonCell: UICollectionViewCell, ReusableView {
     @ProgrammaticallyConstrained var pokemonTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        contentView.backgroundColor = .gray
         self.setupConstraints()
-        dropShadow(color: .black.withAlphaComponent(0.7), opacity: 0.3, offSet: CGSize(width: 2, height: 2), radius: 4.0)
-        roundCorners(cornerRadius: 10)
+        dropShadow(color: .black.withAlphaComponent(0.7), opacity: 0.8, offSet: CGSize(width: 2, height: 2), radius: 4.0)
+        contentView.roundCorners(cornerRadius: 10)
     }
     
     required init?(coder: NSCoder) {
@@ -54,6 +55,13 @@ class PokemonCell: UICollectionViewCell, ReusableView {
     
     func configure(pokemon: PokemonModel) {
         pokemonTitle.text = pokemon.name.capitalized
-        
+        if let pokeImageUrl = URL(string: pokemon.sprite.url) {
+            pokeImageView.kf.setImage(with: ImageResource(downloadURL: pokeImageUrl, cacheKey: pokemon.sprite.url))
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        pokeImageView.image = nil
     }
 }
