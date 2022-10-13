@@ -14,7 +14,7 @@ class PokemonListViewController: UIViewController {
         return collectionView
     }()
     
-    private var viewModel = PokemonViewModel()
+    var viewModel: PokemonViewModel!
     
     lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .medium)
