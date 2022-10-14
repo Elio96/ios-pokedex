@@ -32,6 +32,10 @@ class PokemonDetailViewModel {
     
     var imagePokemon: UIImage?
     
+    var isBright: Bool {
+        return imagePokemon?.averageColor?.isBright ?? false
+    }
+    
     func getPokemonImage() async -> UIImage? {
         if let url = URL(string: pokemonModel.sprite.url) {
             return await withCheckedContinuation({ continuation in

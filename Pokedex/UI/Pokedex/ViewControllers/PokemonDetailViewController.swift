@@ -54,6 +54,10 @@ class PokemonDetailViewController: UIViewController {
         detailView.roundCorners(corners: [.topLeft, .topRight], radius: 30)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        viewModel.isBright ? .default : .lightContent
+    }
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -66,8 +70,9 @@ class PokemonDetailViewController: UIViewController {
         let image = viewModel.imagePokemon
         pokemonImage.image = image
         view.backgroundColor = image?.averageColor
-        let colorText: UIColor = image?.averageColor?.isBright ?? false ? .black : .white
+        let colorText: UIColor = viewModel.isBright ? .black : .white
         navigationController?.navigationBar.largeTitleTextAttributes?[.foregroundColor] = colorText
+        navigationController?.navigationBar.tintColor = colorText
     }
     
     private func setupConstraints() {
