@@ -108,4 +108,10 @@ extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSourc
             return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let tableViewHeaderCell = TableViewHeaderCell(text: viewModel.title(for: section))
+        tableViewHeaderCell.backgroundColor = .white
+        return tableViewHeaderCell
+    }
 }

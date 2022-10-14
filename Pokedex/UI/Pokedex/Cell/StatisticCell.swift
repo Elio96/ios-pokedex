@@ -112,6 +112,9 @@ class StatisticCell: UITableViewCell, ReusableView {
     
     func configure(with statistic: StatisticItem) {
         title.text = statistic.statEnum?.title.uppercased()
+        if let isBright = statistic.statEnum?.color.isBright {
+            statusValueRatio.textColor = isBright ? .black : .white
+        }
         statusValueRatio.text = "\(statistic.baseStat)/\(max(statistic.baseStat, 100))"
         statusBar.configure(with: statistic)
     }

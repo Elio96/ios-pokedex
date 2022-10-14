@@ -24,6 +24,7 @@
 		21FF834F28F94CD2006A2DB8 /* Extension+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF834E28F94CD2006A2DB8 /* Extension+UITableView.swift */; };
 		21FF835128F95C51006A2DB8 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF835028F95C51006A2DB8 /* Extension+String.swift */; };
 		21FF835428F961C4006A2DB8 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF835328F961C4006A2DB8 /* StatusBar.swift */; };
+		21FF835628F96CA2006A2DB8 /* TableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF835528F96CA2006A2DB8 /* TableViewHeaderCell.swift */; };
 		3B892E317D39CE4AE9361270 /* Pods_Pokedex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16840F1BFFA9F7C89C2F8C7C /* Pods_Pokedex.framework */; };
 		5B4F75B628F8516C0027D76B /* PokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F75B528F8516C0027D76B /* PokemonViewModel.swift */; };
 		5B4F75B828F856710027D76B /* Extension+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4F75B728F856710027D76B /* Extension+UICollectionView.swift */; };
@@ -64,6 +65,7 @@
 		21FF834E28F94CD2006A2DB8 /* Extension+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITableView.swift"; sourceTree = "<group>"; };
 		21FF835028F95C51006A2DB8 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		21FF835328F961C4006A2DB8 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		21FF835528F96CA2006A2DB8 /* TableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderCell.swift; sourceTree = "<group>"; };
 		5B4F75B528F8516C0027D76B /* PokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewModel.swift; sourceTree = "<group>"; };
 		5B4F75B728F856710027D76B /* Extension+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UICollectionView.swift"; sourceTree = "<group>"; };
 		5B4F75B928F858110027D76B /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				5BC2A73C28F84AAE00D62530 /* PokemonCell.swift */,
 				21FF834A28F8CCF2006A2DB8 /* BaseDetailCell.swift */,
 				21FF834C28F8CE46006A2DB8 /* StatisticCell.swift */,
+				21FF835528F96CA2006A2DB8 /* TableViewHeaderCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				21FF833928F89519006A2DB8 /* UIImageColors.swift in Sources */,
 				21FF834428F8B28B006A2DB8 /* ImageAssets.swift in Sources */,
 				2166F27928F772F100573634 /* PokemonApiManager.swift in Sources */,
+				21FF835628F96CA2006A2DB8 /* TableViewHeaderCell.swift in Sources */,
 				5BC2A74128F84AAE00D62530 /* PokemonCell.swift in Sources */,
 				21FF834D28F8CE46006A2DB8 /* StatisticCell.swift in Sources */,
 				5BC2A74828F84AE900D62530 /* ProgrammaticallyConstrained.swift in Sources */,

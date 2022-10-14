@@ -73,6 +73,10 @@ class PokemonDetailViewModel {
         tableViewDataSource.append(sectionStats)
     }
     
+    func title(for section: Int) -> String? {
+        return tableViewDataSource[section].title
+    }
+    
     func numberOfSection() -> Int {
         return tableViewDataSource.count
     }
