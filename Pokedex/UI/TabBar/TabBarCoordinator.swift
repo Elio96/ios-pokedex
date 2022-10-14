@@ -29,13 +29,13 @@ enum TabBarPage {
         }
     }
     
-    func pageImage(selected: Bool) -> UIImage? {
+    func pageImage() -> UIImage? {
         let image: UIImage?
         switch self {
         case .pokemonList:
-            image = selected ? .init(imageAsset: .selectedPokeball) : .init(imageAsset: .unselectedPokeball)
+            image = .init(imageAsset: .pokedexIcon)
         case .favorites:
-            image = selected ? .init(imageAsset: .selectedPokeball) : .init(imageAsset: .unselectedPokeball)
+            image = .init(imageAsset: .favoritePokemon)
         }
         return image
     }
@@ -122,7 +122,8 @@ class TabBarCoordinator: TabCoordinatorProtocol {
 //            children.append(profileCoordinator)
             break
         }
-        navController.tabBarItem = UITabBarItem(title: page.pageTitleValue(), image: page.pageImage(selected: false), selectedImage: page.pageImage(selected: true))
+        
+        navController.tabBarItem = UITabBarItem(title: page.pageTitleValue(), image: page.pageImage(), selectedImage: nil)
         return navController
     }
     
