@@ -25,6 +25,7 @@ class PokemonDetailViewController: UIViewController {
     @ProgrammaticallyConstrained private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.alwaysBounceVertical = false
+        tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         return tableView
     }()
@@ -102,9 +103,9 @@ extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSourc
             cell.configure(with: baseDetailItem)
             return cell
         case .statisticCell(let statisticItem):
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(for: indexPath) as StatisticCell
+            cell.configure(with: statisticItem)
+            return cell
         }
     }
-    
-    
 }
