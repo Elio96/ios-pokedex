@@ -23,7 +23,7 @@ class PokedexCoordinator: Coordinator {
         self.navigationController = navController
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [
-            .font: UIFont.pokemonSolid?.withSize(25) as Any,
+            .font: UIFont.gameBoyFont?.withSize(25) as Any,
         ]
         navigationController?.navigationBar.titleTextAttributes = [
             .font: UIFont.pokemonSolid?.withSize(20) as Any
@@ -38,15 +38,15 @@ class PokedexCoordinator: Coordinator {
         navigationController?.setViewControllers([pokemonViewController], animated: true)
     }
     
-    private func buildPokemonDetailViewController(with pokemon: PokemonModel) -> PokemonDetailViewController {
+    private func buildPokemonDetailViewController(with pokemon: PokemonModel, image: UIImage?) -> PokemonDetailViewController {
         let pokemonDetailVC = PokemonDetailViewController()
-        let pokemonDetailViewModel = PokemonDetailViewModel(from: pokemon)
+        let pokemonDetailViewModel = PokemonDetailViewModel(from: pokemon, imagePokemon: image)
         pokemonDetailVC.viewModel = pokemonDetailViewModel
         return pokemonDetailVC
     }
     
-    func startPokemonDetailViewController(with pokemon: PokemonModel) {
-        let pokemonDetailVC = buildPokemonDetailViewController(with: pokemon)
+    func startPokemonDetailViewController(with pokemon: PokemonModel, image: UIImage?) {
+        let pokemonDetailVC = buildPokemonDetailViewController(with: pokemon, image: image)
         self.navigationController?.pushViewController(pokemonDetailVC, animated: true)
     }
     

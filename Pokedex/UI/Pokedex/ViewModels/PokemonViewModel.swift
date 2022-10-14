@@ -43,8 +43,8 @@ final class PokemonViewModel {
         return pokemon.value[indexPath.row]
     }
     
-    func selectItem(at indexPath: IndexPath) {
+    func selectItem(at indexPath: IndexPath, image: UIImage?) {
         let pokemon = pokemon.value[indexPath.row]
-        coordinator?.startPokemonDetailViewController(with: pokemon)
+        coordinator?.startPokemonDetailViewController(with: pokemon, image: image)
     }
 }

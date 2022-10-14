@@ -22,13 +22,6 @@ class PokemonListViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .red
         title = viewModel.title
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [
-            .font: UIFont.pokemonSolid?.withSize(25) as Any
-        ]
-        navigationController?.navigationBar.titleTextAttributes = [
-            .font: UIFont.pokemonSolid?.withSize(20) as Any
-        ]
         viewModel.getPokemon()
         setupCollectionView()
         loader.animate()
@@ -62,22 +55,24 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
         cell.configure(pokemon: viewModel.cellForItemAt(indexPath: indexPath))
         return cell
     }
-}
-
-extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = (collectionView.bounds.width - 60) / 2
-        return CGSize(width: size, height: size)
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.selectItem(at: indexPath)
+        let cellImage = collectionView.cell(at: indexPath) as PokemonCell
+        viewModel.selectItem(at: indexPath, image: cellImage.pokeImageView.image)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let footer = collectionView.dequeueReusableView(ofKind: kind, at: indexPath) as LoaderCell
         footer.configure(with: loader)
         return footer
+    }
+    
+}
+
+extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = (collectionView.bounds.width - 60) / 2
+        return CGSize(width: size, height: size)
     }
 }
 

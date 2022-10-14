@@ -40,9 +40,13 @@ class PokemonDetailViewController: UIViewController {
         setupConstraints()
         setupTableView()
         viewModel.viewDidLoad()
-        Task {
-            await self.setupUI()
-        }
+        setupUI()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.largeTitleTextAttributes?[.foregroundColor] = UIColor.black
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,11 +61,13 @@ class PokemonDetailViewController: UIViewController {
         tableView.register(StatisticCell.self)
     }
     
-    private func setupUI() async{
+    private func setupUI() {
         detailView.backgroundColor = .white
-        let image = await viewModel.getPokemonImage()
+        let image = viewModel.imagePokemon
         pokemonImage.image = image
         view.backgroundColor = image?.averageColor
+        let colorText: UIColor = image?.averageColor?.isBright ?? false ? .black : .white
+        navigationController?.navigationBar.largeTitleTextAttributes?[.foregroundColor] = colorText
     }
     
     private func setupConstraints() {

@@ -30,6 +30,8 @@ class PokemonDetailViewModel {
         return pokemonModel.name
     }
     
+    var imagePokemon: UIImage?
+    
     func getPokemonImage() async -> UIImage? {
         if let url = URL(string: pokemonModel.sprite.url) {
             return await withCheckedContinuation({ continuation in
@@ -49,9 +51,10 @@ class PokemonDetailViewModel {
     var tableViewDataSource: [Section]
     
     
-    init(from model: PokemonModel) {
+    init(from model: PokemonModel, imagePokemon: UIImage?) {
         self.pokemonModel = model
         tableViewDataSource = []
+        self.imagePokemon = imagePokemon
     }
     
     func viewDidLoad() {
