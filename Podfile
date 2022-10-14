@@ -7,5 +7,6 @@ target 'Pokedex' do
 
   # Pods for Pokedex
   pod 'Kingfisher'
+  pod 'lottie-ios'
 
 end

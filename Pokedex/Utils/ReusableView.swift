@@ -9,10 +9,19 @@ import UIKit
 
 protocol ReusableView: AnyObject {
     static var defaultReuseIdentifier: String { get }
+    
+    static var reusableViewKind: String? { get }
 }
 
 extension ReusableView where Self: UIView {
     static var defaultReuseIdentifier: String {
         return String(describing: self)
+    }
+    
+    static var reusableViewKind: String? {
+        if self is UICollectionReusableView.Type {
+            fatalError("reusableViewKind not overwritten in \(self.defaultReuseIdentifier)")
+        }
+        return nil
     }
 }

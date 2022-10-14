@@ -14,13 +14,9 @@ class PokemonListViewController: UIViewController {
         return collectionView
     }()
     
-    var viewModel: PokemonViewModel!
+    @ProgrammaticallyConstrained private var loader: Loader = Loader()
     
-    lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .medium)
-        spinner.color = .white
-        return spinner
-    }()
+    var viewModel: PokemonViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +24,13 @@ class PokemonListViewController: UIViewController {
         title = viewModel.title
         viewModel.getPokemon()
         setupCollectionView()
-        viewModel.pokemon.bind { _ in
+        loader.animate()
+        viewModel.pokemon.bind { [weak self] pokemons in
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
+                if !pokemons.isEmpty {
+                    self?.loader.stop()
+                }
+                self?.collectionView.reloadData()
             }
         }
     }
@@ -40,6 +40,7 @@ class PokemonListViewController: UIViewController {
         collectionView.register(PokemonCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.registerForSupplementingViewOfKind(view: LoaderCell.self)
     }
 
 }
@@ -65,6 +66,12 @@ extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.selectItem(at: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableView(ofKind: kind, at: indexPath) as LoaderCell
+        footer.configure(with: loader)
+        return footer
+    }
 }
 
 extension PokemonListViewController {
@@ -74,6 +81,7 @@ extension PokemonListViewController {
         let distanceFromBottom = scrollView.contentSize.height - contentYOffset
         
         if distanceFromBottom < (height * 1.5) {
+            self.loader.animate() 
             viewModel.getPokemon()
         }
     }

@@ -10,14 +10,16 @@ import UIKit
 struct AlertHandler {
     
     static func show(title: String, message: String) {
-        let scenes = UIApplication.shared.connectedScenes
-        guard let windowsScenes = scenes.first as? UIWindowScene,
-              let window = windowsScenes.windows.first else {
-            fatalError("Unable to find window")
+        DispatchQueue.main.async {
+            let scenes = UIApplication.shared.connectedScenes
+            guard let windowsScenes = scenes.first as? UIWindowScene,
+                  let window = windowsScenes.windows.first else {
+                fatalError("Unable to find window")
+            }
+            
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            window.rootViewController?.present(alert, animated: true)
         }
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        window.rootViewController?.present(alert, animated: true)
     }
 }
