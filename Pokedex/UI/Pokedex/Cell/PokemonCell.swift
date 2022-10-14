@@ -21,6 +21,7 @@ class PokemonCell: UICollectionViewCell, ReusableView {
     @ProgrammaticallyConstrained var pokemonTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.font = .gameBoyFont?.setSize(13)
         label.textColor = .black
         return label
     }()

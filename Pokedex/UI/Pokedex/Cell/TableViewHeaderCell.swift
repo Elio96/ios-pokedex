@@ -15,7 +15,7 @@ class TableViewHeaderCell: UIView {
         super.init(frame: frame)
         titleLabel.text = text
         titleLabel.edgeTo(view: self, topConstant: 4, bottomConstant: 4, rightConstant: 16, leftConstant: 16)
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.font = .gameBoyFont?.setSize(18)
     }
     
     required init?(coder: NSCoder) {

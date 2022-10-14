@@ -30,6 +30,9 @@ class PokemonDetailViewController: UIViewController {
         return tableView
     }()
     
+    // this is used to avoid navigation title shrinking when table view is scrolling
+    @ProgrammaticallyConstrained private var placeholderView: UIView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
@@ -62,10 +65,18 @@ class PokemonDetailViewController: UIViewController {
     }
     
     private func setupConstraints() {
+        self.view.addSubview(placeholderView)
         self.view.addSubview(detailView)
         NSLayoutConstraint.activate([
+            placeholderView.heightAnchor.constraint(equalToConstant: 0),
+            placeholderView.bottomAnchor.constraint(equalTo: self.detailView.topAnchor),
+            placeholderView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            placeholderView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
             detailView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.6),
-            detailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            detailView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             detailView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             detailView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
         ])
@@ -83,7 +94,6 @@ class PokemonDetailViewController: UIViewController {
         tableView.edgeTo(view: detailView, topConstant: 16, bottomConstant: 16, rightConstant: 16, leftConstant: 16)
     }
     
-
 }
 
 extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSource {

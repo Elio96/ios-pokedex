@@ -61,6 +61,7 @@ class StatisticCell: UITableViewCell, ReusableView {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .black
+        label.font = .gameBoyFont?.setSize(14)
         return label
     }()
     
@@ -68,7 +69,7 @@ class StatisticCell: UITableViewCell, ReusableView {
     @ProgrammaticallyConstrained private var statusValueRatio: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = label.font.withSize(15)
+        label.font = .gameBoyFont?.setSize(12)
         return label
     }()
     

@@ -22,6 +22,13 @@ class PokemonListViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .red
         title = viewModel.title
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            .font: UIFont.pokemonSolid?.withSize(25) as Any
+        ]
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont.pokemonSolid?.withSize(20) as Any
+        ]
         viewModel.getPokemon()
         setupCollectionView()
         loader.animate()

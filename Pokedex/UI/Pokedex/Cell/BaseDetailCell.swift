@@ -18,13 +18,15 @@ class BaseDetailCell: UITableViewCell, ReusableView {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .black
+        label.font = .gameBoyFont?.setSize(14)
         return label
     }()
     
     @ProgrammaticallyConstrained private var valuesLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = .darkGray
+        label.font = .gameBoyFont?.setSize(12)
         return label
     }()
     

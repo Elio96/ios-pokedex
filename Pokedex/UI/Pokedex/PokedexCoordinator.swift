@@ -15,8 +15,19 @@ class PokedexCoordinator: Coordinator {
     var navigationController: UINavigationController?
     
     init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
         children = []
+        setupNavigationController(navController: navigationController)
+    }
+    
+    private func setupNavigationController(navController: UINavigationController) {
+        self.navigationController = navController
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            .font: UIFont.pokemonSolid?.withSize(25) as Any,
+        ]
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont.pokemonSolid?.withSize(20) as Any
+        ]
     }
     
     func start() {
