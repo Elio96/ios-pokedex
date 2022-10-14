@@ -8,6 +8,8 @@
 import Foundation
 
 typealias Types = [Type]
+typealias Abilities = [Ability]
+typealias Moves = [Move]
 
 struct PokemonModel: Decodable {
     let id: Int
@@ -17,8 +19,8 @@ struct PokemonModel: Decodable {
     let baseExperience: Int
     let forms: [ItemResp]
     let sprite: Sprite
-    let abilities: [Ability]
-    let moves: [Move]
+    let abilities: Abilities
+    let moves: Moves
     let types: Types
     let stats: [Stat]
     
@@ -61,7 +63,19 @@ struct Stat: Decodable {
 
 extension Types {
     var stringTypes: String {
-        map { $0.type.name }.joined(separator: "\n\n")
+        map { $0.type.name.withoutDash }.joined(separator: "\n\n")
+    }
+}
+
+extension Abilities {
+    var stringAbilities: String {
+        map { $0.ability.name.withoutDash }.joined(separator: "\n\n")
+    }
+}
+
+extension Moves {
+    var stringMoves: String {
+        map { $0.move.name.withoutDash }.prefix(10).joined(separator: "\n\n")
     }
 }
 

@@ -7,12 +7,54 @@
 
 import UIKit
 
-struct StatisticItem {
-    let title: String
-    let value: Int
-    let color: UIColor
+enum StatisticEnum: String {
+    case hp = "hp"
+    case spatk = "special-attack"
+    case atk = "attack"
+    case spdef = "special-defense"
+    case def = "defense"
+    case speed = "speed"
+    
+    var title: String {
+        switch self {
+        case .hp:
+            return "Hp"
+        case .spatk:
+            return "Sp.Atk"
+        case .atk:
+            return "Atk"
+        case .spdef:
+            return "Sp.Def"
+        case .def:
+            return "Def"
+        case .speed:
+            return "Speed"
+        }
+    }
+    
+    var color: UIColor {
+        switch self {
+        case .hp:
+            return .purple
+        case .spatk:
+            return .orange
+        case .atk:
+            return .red
+        case .spdef:
+            return .blue
+        case .def:
+            return .cyan
+        case .speed:
+            return .green
+        }
+    }
 }
 
-class StatisticCell: UITableViewCell {
+struct StatisticItem {
+    let statEnum: StatisticEnum?
+    let baseStat: Int
+}
+
+class StatisticCell: UITableViewCell, ReusableView {
     
 }
