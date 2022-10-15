@@ -54,11 +54,13 @@ class PokemonDetailViewModel {
     
     var tableViewDataSource: [Section]
     
+    private var favoriteManager: PokemonCoreDataManager<FavoritePokemon>
     
     init(from model: PokemonModel, imagePokemon: UIImage?) {
         self.pokemonModel = model
         tableViewDataSource = []
         self.imagePokemon = imagePokemon
+        favoriteManager = PokemonCoreDataManager(managedObjectContext: CoreDataManager.shared.managedObjectContext)
     }
     
     func viewDidLoad() {

@@ -71,6 +71,8 @@ class TabBarCoordinator: TabCoordinatorProtocol {
     
     var pokedexCoordinator: PokedexCoordinator?
     
+    var favoritesCoordinator: FavoriteCoordinator?
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -113,13 +115,13 @@ class TabBarCoordinator: TabCoordinatorProtocol {
             pokedexCoordinator.start()
             children.append(pokedexCoordinator)
         case .favorites:
-//            profileCoordinator = ProfileCoordinator(navigationController: navController)
-//            guard let profileCoordinator = profileCoordinator else {
-//                return navController
-//            }
-//            profileCoordinator.start()
-//            profileCoordinator.parentCoordinator = self
-//            children.append(profileCoordinator)
+            favoritesCoordinator = FavoriteCoordinator(navigationController: navController)
+            guard let favoritesCoordinator = favoritesCoordinator else {
+                return navController
+            }
+            favoritesCoordinator.start()
+            favoritesCoordinator.parentCoordinator = self
+            children.append(favoritesCoordinator)
             break
         }
         

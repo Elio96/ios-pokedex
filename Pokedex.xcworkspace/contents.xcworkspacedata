@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/elianocorallo/development/iOS-Pokedex/Pokedex/CoreData/ManagedModel/FavoritePokemon+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/elianocorallo/development/iOS-Pokedex/Pokedex/CoreData/ManagedModel/FavoritePokemon+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:/Users/elianocorallo/development/iOS-Pokedex/Pokedex/CoreData/Pokemon+CoreDataClass.swift">
    </FileRef>
    <FileRef

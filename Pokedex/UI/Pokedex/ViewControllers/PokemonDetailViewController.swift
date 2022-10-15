@@ -42,7 +42,8 @@ class PokemonDetailViewController: UIViewController {
         setupTableView()
         viewModel.viewDidLoad()
         setupUI()
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(imageAsset: .favoritePokemon), landscapeImagePhone: .init(imageAsset: .favoritePokemon), style: .plain, target: self, action: #selector(handleAddToFavorite(_:)))
+//        navigationItem.rightBarButtonItem?.tintColor = .yellow
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,6 +105,10 @@ class PokemonDetailViewController: UIViewController {
         ])
         
         tableView.edgeTo(view: detailView, topConstant: 16, bottomConstant: 16, rightConstant: 16, leftConstant: 16)
+    }
+    
+    @objc private func handleAddToFavorite(_ sender: UIBarButtonItem) {
+        navigationItem.rightBarButtonItem?.tintColor = .systemYellow
     }
     
 }

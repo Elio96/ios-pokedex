@@ -23,6 +23,12 @@ extension UITableView {
         register(T.self, forHeaderFooterViewReuseIdentifier: T.defaultReuseIdentifier)
     }
     
+    func register<T: UITableViewCell>(_: T.Type) where T: ReusableView, T: NibLoadableView {
+        let bundle = Bundle(for: T.self)
+        let nib = UINib(nibName: T.nibName, bundle: bundle)
+        register(nib, forCellReuseIdentifier: T.defaultReuseIdentifier)
+    }
+    
     func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>() -> T where T: ReusableView {
         guard let cell = dequeueReusableHeaderFooterView(withIdentifier: T.defaultReuseIdentifier) as? T else {
             fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")

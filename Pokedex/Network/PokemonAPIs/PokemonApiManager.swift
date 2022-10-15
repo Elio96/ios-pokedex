@@ -12,10 +12,10 @@ class PokemonApiManager {
     
     static let shared = PokemonApiManager()
     
-    private let pokemonCoreDataManager: PokemonCoreDataManager
+    private let pokemonCoreDataManager: PokemonCoreDataManager<Pokemon>
     
     private init() {
-        self.pokemonCoreDataManager = PokemonCoreDataManager(managedObjectContext: CoreDataManager.shared.managedObjectContext, entityName: "Pokemon")
+        self.pokemonCoreDataManager = PokemonCoreDataManager(managedObjectContext: CoreDataManager.shared.managedObjectContext)
     }
     
     private var pokemonsResponse: PokemonsResponse?

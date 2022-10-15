@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Early GameBoy.ttf">
+            <string>Early-GameBoy</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="152" id="KGk-i7-Jjw" customClass="FavoriteTableViewCell" customModule="Pokedex" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="152"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="449" height="152"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wvl-uU-Fyo">
+                        <rect key="frame" x="8" y="8" width="433" height="136"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="OCU-si-qAX">
+                                <rect key="frame" x="8" y="16" width="322.5" height="104"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="yIx-UE-nFg">
+                                        <rect key="frame" x="0.0" y="0.0" width="322.5" height="15"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="First Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rym-1w-et4">
+                                                <rect key="frame" x="0.0" y="0.0" width="159" height="15"/>
+                                                <fontDescription key="fontDescription" name="Early-GameBoy" family="Early GameBoy" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Second Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siQ-cO-uHQ">
+                                                <rect key="frame" x="163" y="0.0" width="159.5" height="15"/>
+                                                <fontDescription key="fontDescription" name="Early-GameBoy" family="Early GameBoy" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QX-iz-Twz">
+                                        <rect key="frame" x="0.0" y="19" width="322.5" height="85"/>
+                                        <fontDescription key="fontDescription" name="Early-GameBoy" family="Early GameBoy" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pokedexIcon" translatesAutoresizingMaskIntoConstraints="NO" id="PpR-pb-k6e">
+                                <rect key="frame" x="338.5" y="8" width="86.5" height="120"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                        <constraints>
+                            <constraint firstItem="PpR-pb-k6e" firstAttribute="width" secondItem="Wvl-uU-Fyo" secondAttribute="width" multiplier="0.2" id="QBe-59-BxE"/>
+                            <constraint firstItem="PpR-pb-k6e" firstAttribute="leading" secondItem="OCU-si-qAX" secondAttribute="trailing" constant="8" id="QE9-gX-85Y"/>
+                            <constraint firstAttribute="bottom" secondItem="OCU-si-qAX" secondAttribute="bottom" constant="16" id="dTg-es-vwD"/>
+                            <constraint firstAttribute="trailing" secondItem="PpR-pb-k6e" secondAttribute="trailing" constant="8" id="hNw-Ep-5i8"/>
+                            <constraint firstAttribute="bottom" secondItem="PpR-pb-k6e" secondAttribute="bottom" constant="8" id="mC5-HQ-9Xm"/>
+                            <constraint firstItem="OCU-si-qAX" firstAttribute="top" secondItem="Wvl-uU-Fyo" secondAttribute="top" constant="16" id="qWB-GS-1U5"/>
+                            <constraint firstItem="OCU-si-qAX" firstAttribute="leading" secondItem="Wvl-uU-Fyo" secondAttribute="leading" constant="8" id="vkW-pQ-5Ii"/>
+                            <constraint firstItem="PpR-pb-k6e" firstAttribute="top" secondItem="Wvl-uU-Fyo" secondAttribute="top" constant="8" id="wCZ-UY-16N"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Wvl-uU-Fyo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="81Q-as-g58"/>
+                    <constraint firstAttribute="trailing" secondItem="Wvl-uU-Fyo" secondAttribute="trailing" constant="8" id="O7g-Q8-aEC"/>
+                    <constraint firstItem="Wvl-uU-Fyo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="cft-Ij-rth"/>
+                    <constraint firstAttribute="bottom" secondItem="Wvl-uU-Fyo" secondAttribute="bottom" constant="8" id="vbz-Zp-Qca"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="container" destination="Wvl-uU-Fyo" id="XXg-hn-12g"/>
+                <outlet property="firstType" destination="rym-1w-et4" id="PEp-Zm-zOp"/>
+                <outlet property="pokemonImage" destination="PpR-pb-k6e" id="k0C-s5-DkA"/>
+                <outlet property="pokemonName" destination="1QX-iz-Twz" id="4D1-DF-NxX"/>
+                <outlet property="secondType" destination="siQ-cO-uHQ" id="K5q-4I-xjh"/>
+            </connections>
+            <point key="canvasLocation" x="212.31884057971016" y="126.5625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="pokedexIcon" width="30" height="28"/>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

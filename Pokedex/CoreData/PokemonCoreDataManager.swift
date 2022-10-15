@@ -8,18 +8,18 @@
 import Foundation
 import CoreData
 
-class PokemonCoreDataManager {
+class PokemonCoreDataManager<T: NSManagedObject> {
     
     private var managedObjectContext: NSManagedObjectContext
     private var entityName: String
     
-    init(managedObjectContext: NSManagedObjectContext, entityName: String) {
-        self.entityName = entityName
+    init(managedObjectContext: NSManagedObjectContext) {
+        self.entityName = String(describing: T.self)
         self.managedObjectContext = managedObjectContext
     }
     
     func clearAllData() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName)
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: String(describing: T.self))
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try CoreDataManager.shared.persistentContainer
@@ -38,7 +38,7 @@ extension PokemonCoreDataManager: DataManagerDelegate {
     
     typealias CodableModel = PokemonModel
     
-    typealias ManagedObject = Pokemon
+    typealias ManagedObject = T
     
     func saveToStorage(models: [PokemonModel]) {
         models.convertToManagedObject(managedObjectContext)
@@ -46,7 +46,7 @@ extension PokemonCoreDataManager: DataManagerDelegate {
     }
     
     func fetchFromStorage(completion: @escaping DataFetcherCompletion) {
-        let pokemonFetchReq = NSFetchRequest<Pokemon>(entityName: entityName)
+        let pokemonFetchReq = NSFetchRequest<T>(entityName: entityName)
         let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
         pokemonFetchReq.sortDescriptors = [sortDescriptor]
         do {
