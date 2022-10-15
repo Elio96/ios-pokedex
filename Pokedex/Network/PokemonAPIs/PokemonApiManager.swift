@@ -65,8 +65,13 @@ class PokemonApiManager {
     }
     
     private func getPokemons(url: String?) async throws -> PokemonsResponse {
-        guard var reqURL = URL(string: "https://pokeapi.co/api/v2/pokemon") else { throw NSError(domain: "Error parsing url", code: -1) }
+//        guard var reqURL = URL(string: "https://pokeapi.co/api/v2/pokemon") else { throw NSError(domain: "Error parsing url", code: -1) }
+        let reqURL: URL
         if let urlString = url, let url = URL(string: urlString) {
+            reqURL = url
+        } else {
+            
+            guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon") else { throw NSError(domain: "Error parsing url", code: -1) }
             reqURL = url
         }
         let urlRequest = URLRequest(url: reqURL)

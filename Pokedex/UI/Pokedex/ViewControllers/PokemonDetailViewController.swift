@@ -35,9 +35,6 @@ class PokemonDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PokemonApiManager.shared.fetchFromStorage { _ in
-            
-        }
         
         title = viewModel.title
         view.backgroundColor = .white

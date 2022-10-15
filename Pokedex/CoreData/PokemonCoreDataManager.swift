@@ -17,6 +17,21 @@ class PokemonCoreDataManager {
         self.entityName = entityName
         self.managedObjectContext = managedObjectContext
     }
+    
+    func clearAllData() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataManager.shared.persistentContainer
+                .persistentStoreCoordinator
+                .execute(
+                    deleteRequest,
+                    with: CoreDataManager.shared.managedObjectContext
+                )
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 extension PokemonCoreDataManager: DataManagerDelegate {

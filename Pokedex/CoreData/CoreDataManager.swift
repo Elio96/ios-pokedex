@@ -23,6 +23,7 @@ class CoreDataManager {
             if let error = error {
                 fatalError("Unresolved error \(error.localizedDescription)")
             }
+            container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         }
         return container
     }()
