@@ -20,15 +20,14 @@ struct PokemonModel: Decodable {
     let weight: Int
     let height: Int
     var baseExperience: Int = 0
-    var forms: [ItemResp] = []
-    var sprite: Sprite = Sprite(url: "")
+    var sprite: Sprite
     var abilities: Abilities
-    var moves: Moves = []
-    var types: Types = []
-    var stats: [Stat] = []
+    var moves: Moves
+    var types: Types
+    var stats: [Stat]
     
     private enum CodingKeys: String, CodingKey {
-        case id, name, weight, height, forms, abilities, moves, types, stats
+        case id, name, weight, height, abilities, moves, types, stats
         case baseExperience = "base_experience"
         case sprite = "sprites"
     }
@@ -111,8 +110,15 @@ extension PokemonModel: ManagedObjectConvertible {
         object.name = name
         object.weight = Int64(weight)
         object.height = Int64(height)
-        let abilities: [AbilityAttributeCoreData] = self.abilities.map({AbilityAttributeCoreData(name: $0.ability.name, url: $0.ability.url)})
-        object.abilities = AbilitiesAttributeCoreData(abilities: abilities)
+        let abilities: [AttributeCoreData] = self.abilities.map({AttributeCoreData(name: $0.ability.name, url: $0.ability.url)})
+        object.abilities = PokemonAttributeCoreData(attributes: abilities)
+        object.urlImage = sprite.url
+        let moves: [AttributeCoreData] = self.moves.map({AttributeCoreData(name: $0.move.name, url: $0.move.url)})
+        object.moves = PokemonAttributeCoreData(attributes: moves)
+        let types: [AttributeCoreData] = self.types.map({AttributeCoreData(name: $0.type.name, url: $0.type.url)})
+        object.types = PokemonAttributeCoreData(attributes: types)
+        let stats: [AttributeCoreData] = self.stats.map({AttributeCoreData(name: $0.stat.name, url: $0.stat.url, baseStat: $0.baseStat)})
+        object.stats = PokemonAttributeCoreData(attributes: stats)
         return object
     }
 }

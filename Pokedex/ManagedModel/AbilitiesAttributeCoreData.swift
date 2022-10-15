@@ -7,25 +7,25 @@
 
 import Foundation
 
-public class AbilitiesAttributeCoreData: NSObject, NSCoding {
+public class PokemonAttributeCoreData: NSObject, NSCoding {
     
-    var abilities: [AbilityAttributeCoreData]?
+    var attributes: [AttributeCoreData]?
     
     enum Key: String {
-        case abilities
+        case attributes
     }
     
-    init(abilities: [AbilityAttributeCoreData]?) {
-        self.abilities = abilities
+    init(attributes: [AttributeCoreData]?) {
+        self.attributes = attributes
     }
     
     public func encode(with coder: NSCoder) {
-        coder.encode(abilities, forKey: Key.abilities.rawValue)
+        coder.encode(attributes, forKey: Key.attributes.rawValue)
     }
     
     public required convenience init?(coder: NSCoder) {
-        let abilities = coder.decodeObject(forKey: Key.abilities.rawValue) as? [AbilityAttributeCoreData]
-        self.init(abilities: abilities)
+        let attributes = coder.decodeObject(forKey: Key.attributes.rawValue) as? [AttributeCoreData]
+        self.init(attributes: attributes)
     }
     
 }
