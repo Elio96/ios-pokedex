@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class PokemonApiManager {
     
@@ -25,6 +26,7 @@ class PokemonApiManager {
                     let pokemonModel = try await getPokemonDetails(from: pokemonItem.url)
                     pokemonModels.append(pokemonModel)
                 }
+                saveToStorage(models: pokemonModels)
                 completion(.success(pokemonModels))
             } catch let error {
                 completion(.failure(error))
@@ -64,4 +66,28 @@ class PokemonApiManager {
             }
         })
     }
+}
+
+extension PokemonApiManager: DataManagerDelegate {
+    
+    typealias CodableModel = PokemonModel
+    
+    typealias ManagedObject = Pokemon
+    
+    func saveToStorage(models: [PokemonModel]) {
+        models.convertToManagedObject(CoreDataManager.shared.managedObjectContext)
+        CoreDataManager.shared.saveContext()
+    }
+    
+    func fetchFromStorage(completion: @escaping DataFetcherCompletion) {
+        let managedObjectContext = CoreDataManager.shared.managedObjectContext
+        let pokemonFetchReq = NSFetchRequest<Pokemon>(entityName: Pokemon.entityName)
+        do {
+            let pokemons = try managedObjectContext.fetch(pokemonFetchReq)
+            print(pokemons[0].toModel())
+        } catch let error {
+            AlertHandler.show(title: "Errore", message: error.localizedDescription)
+        }
+    }
+    
 }
