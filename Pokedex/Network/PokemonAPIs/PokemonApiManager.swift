@@ -12,7 +12,11 @@ class PokemonApiManager {
     
     static let shared = PokemonApiManager()
     
-    private init() {}
+    private let pokemonCoreDataManager: PokemonCoreDataManager
+    
+    private init() {
+        self.pokemonCoreDataManager = PokemonCoreDataManager(managedObjectContext: CoreDataManager.shared.managedObjectContext, entityName: "Pokemon")
+    }
     
     private var pokemonsResponse: PokemonsResponse?
     
@@ -26,9 +30,20 @@ class PokemonApiManager {
                     let pokemonModel = try await getPokemonDetails(from: pokemonItem.url)
                     pokemonModels.append(pokemonModel)
                 }
-                saveToStorage(models: pokemonModels)
+                pokemonCoreDataManager.saveToStorage(models: pokemonModels)
                 completion(.success(pokemonModels))
             } catch let error {
+                pokemonCoreDataManager.fetchFromStorage { results in
+                    switch results {
+                    case .success(let pokemons):
+                        if let pokemons = pokemons{
+                            let model = pokemons.compactMap({$0.toModel()})
+                            completion(.success(model))
+                        }
+                    case .failure(let err):
+                        completion(.failure(err))
+                    }
+                }
                 completion(.failure(error))
             }
         }
@@ -66,28 +81,4 @@ class PokemonApiManager {
             }
         })
     }
-}
-
-extension PokemonApiManager: DataManagerDelegate {
-    
-    typealias CodableModel = PokemonModel
-    
-    typealias ManagedObject = Pokemon
-    
-    func saveToStorage(models: [PokemonModel]) {
-        models.convertToManagedObject(CoreDataManager.shared.managedObjectContext)
-        CoreDataManager.shared.saveContext()
-    }
-    
-    func fetchFromStorage(completion: @escaping DataFetcherCompletion) {
-        let managedObjectContext = CoreDataManager.shared.managedObjectContext
-        let pokemonFetchReq = NSFetchRequest<Pokemon>(entityName: Pokemon.entityName)
-        do {
-            let pokemons = try managedObjectContext.fetch(pokemonFetchReq)
-            print(pokemons[0].toModel())
-        } catch let error {
-            AlertHandler.show(title: "Errore", message: error.localizedDescription)
-        }
-    }
-    
 }

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let cache = ImageCache.default
         // Constrain Memory Cache to 10 MB
-        cache.memoryStorage.config.totalCostLimit = 1024 * 1024 * 10
+        cache.memoryStorage.config.totalCostLimit = 1024 * 1024 * 100
         
         // Constrain Disk Cache to 100 MB
         cache.diskStorage.config.sizeLimit = 1024 * 1024 * 100

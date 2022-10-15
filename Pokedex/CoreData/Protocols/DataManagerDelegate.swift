@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CoreData
 
-protocol DataManagerDelegate {
+protocol DataManagerDelegate where ManagedObject: NSManagedObject {
     associatedtype CodableModel
     associatedtype ManagedObject
     
