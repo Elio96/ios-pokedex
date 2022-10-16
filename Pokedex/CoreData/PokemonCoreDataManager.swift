@@ -64,7 +64,10 @@ extension PokemonCoreDataManager: DataManagerDelegate {
     
     func fetchFromStorage(completion: @escaping DataFetcherCompletion) {
         let pokemonFetchReq = NSFetchRequest<T>(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        var sortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        if T.self is FavoritePokemon.Type {
+            sortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: true)
+        }
         pokemonFetchReq.sortDescriptors = [sortDescriptor]
         do {
             let pokemons = try managedObjectContext.fetch(pokemonFetchReq)

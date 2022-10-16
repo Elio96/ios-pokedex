@@ -50,12 +50,20 @@ class FavoriteTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
                     self?.container.backgroundColor = imageDominantColor
                     let colorText: UIColor = imageDominantColor.isBright ? .black : .white
                     self?.pokemonName.textColor = colorText
-                    self?.firstType.textColor = colorText
-                    self?.secondType.textColor = colorText
+                    self?.setupLabel(label: self?.firstType, with: colorText)
+                    self?.setupLabel(label: self?.secondType, with: colorText)
                 case .failure(let err):
                     print(err.localizedDescription)
                 }
             }
+        }
+    }
+    
+    private func setupLabel(label: UILabel?, with color: UIColor?) {
+        label?.apply { it in
+            it.addBorder(borderColor: color)
+            it.roundCorners(cornerRadius: it.frame.height / 2)
+            it.textColor = color
         }
     }
     

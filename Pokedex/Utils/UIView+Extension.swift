@@ -35,6 +35,13 @@ extension UIView {
     }
     
     @discardableResult
+    func addBorder(borderWidth: CGFloat? = nil, borderColor: UIColor? = nil) -> Self {
+        self.layer.borderColor = borderColor?.cgColor
+        self.layer.borderWidth = borderWidth ?? 1
+        return self
+    }
+    
+    @discardableResult
     func dropShadow() -> Self {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
@@ -54,3 +61,16 @@ extension UIView {
         return self
     }
 }
+
+protocol HasApply {}
+
+extension HasApply {
+    
+    @discardableResult
+    func apply(it: (_ it: Self) -> Void) -> Self {
+        it(self)
+        return self
+    }
+}
+
+extension UIView: HasApply {}

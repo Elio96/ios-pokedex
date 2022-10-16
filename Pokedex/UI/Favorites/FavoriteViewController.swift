@@ -43,7 +43,9 @@ class FavoriteViewController: UIViewController {
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
+        let size = viewModel.numberOfRows()
+        size == 0 ? tableView.setEmptyMessage("no pokemon added to favorites") : tableView.removeEmptyMessage()
+        return size
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
