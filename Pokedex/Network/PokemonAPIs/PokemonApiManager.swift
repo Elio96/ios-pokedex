@@ -20,31 +20,40 @@ class PokemonApiManager {
     
     private var pokemonsResponse: PokemonsResponse?
     
+    private var offlineJustLoaded: Bool = false
+    
     func fetchPokemons(_ completion: @escaping (Result<[PokemonModel], Error>) -> Void) {
-        Task {
-            do {
-                let res = try await getPokemons(url: pokemonsResponse?.next)
-                self.pokemonsResponse = res
-                var pokemonModels = [PokemonModel]()
-                for pokemonItem in res.results {
-                    let pokemonModel = try await getPokemonDetails(from: pokemonItem.url)
-                    pokemonModels.append(pokemonModel)
-                }
-                pokemonCoreDataManager.saveToStorage(models: pokemonModels, desiredToConvert: Pokemon.self)
-                completion(.success(pokemonModels))
-            } catch let error {
-                pokemonCoreDataManager.fetchFromStorage { results in
-                    switch results {
-                    case .success(let pokemons):
-                        if let pokemons = pokemons{
-                            let model = pokemons.compactMap({$0.toModel()})
-                            completion(.success(model))
-                        }
-                    case .failure(let err):
-                        completion(.failure(err))
+        ReachabilityHandler.isUnreachable { [weak self] _ in
+            guard let self = self, !self.offlineJustLoaded else { return }
+            self.pokemonCoreDataManager.fetchFromStorage { results in
+                switch results {
+                case .success(let pokemons):
+                    if let pokemons = pokemons{
+                        let model = pokemons.compactMap({$0.toModel()})
+                        self.offlineJustLoaded = true
+                        completion(.success(model))
                     }
+                case .failure(let err):
+                    completion(.failure(err))
                 }
-                completion(.failure(error))
+            }
+        }
+        ReachabilityHandler.isReachable { [weak self] _ in
+            guard let self = self else { return }
+            Task {
+                do {
+                    let res = try await self.getPokemons(url: self.pokemonsResponse?.next)
+                    self.pokemonsResponse = res
+                    var pokemonModels = [PokemonModel]()
+                    for pokemonItem in res.results {
+                        let pokemonModel = try await self.getPokemonDetails(from: pokemonItem.url)
+                        pokemonModels.append(pokemonModel)
+                    }
+                    self.pokemonCoreDataManager.saveToStorage(models: pokemonModels, desiredToConvert: Pokemon.self)
+                    completion(.success(pokemonModels))
+                } catch let error {
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -65,12 +74,10 @@ class PokemonApiManager {
     }
     
     private func getPokemons(url: String?) async throws -> PokemonsResponse {
-//        guard var reqURL = URL(string: "https://pokeapi.co/api/v2/pokemon") else { throw NSError(domain: "Error parsing url", code: -1) }
         let reqURL: URL
         if let urlString = url, let url = URL(string: urlString) {
             reqURL = url
         } else {
-            
             guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon") else { throw NSError(domain: "Error parsing url", code: -1) }
             reqURL = url
         }

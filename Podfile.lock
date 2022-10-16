@@ -1,20 +1,24 @@
 PODS:
   - Kingfisher (7.3.2)
   - lottie-ios (3.5.0)
+  - ReachabilitySwift (5.0.0)
 
 DEPENDENCIES:
   - Kingfisher
   - lottie-ios
+  - ReachabilitySwift
 
 SPEC REPOS:
   trunk:
     - Kingfisher
     - lottie-ios
+    - ReachabilitySwift
 
 SPEC CHECKSUMS:
   Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
   lottie-ios: c55158d67d0629a260625cc2ded2052b829e3c3e
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: 9383622da4b5142f6842a72d862448f9acdc35ce
+PODFILE CHECKSUM: b0b8fcfcfe412cb25694b68dbd523321b7584cf8
 
 COCOAPODS: 1.11.3

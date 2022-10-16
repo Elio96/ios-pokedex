@@ -12,7 +12,9 @@ extension UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         let padding: CGFloat = 20.0
         layout.minimumLineSpacing = padding
-        layout.footerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
+        ReachabilityHandler.isReachable { _ in
+            layout.footerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
+        }
         layout.minimumInteritemSpacing = padding
         layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         return layout
