@@ -12,6 +12,10 @@ import Kingfisher
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        try? FileManager.default.removeItem(atPath: NSHomeDirectory()+"/Library/SplashBoard")
+        do {
+            sleep(2)
+        }
         // Override point for customization after application launch.
         let cache = ImageCache.default
         // Constrain Memory Cache to 10 MB
