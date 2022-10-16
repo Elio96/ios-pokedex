@@ -16,14 +16,6 @@ extension FavoritePokemon {
         return NSFetchRequest<FavoritePokemon>(entityName: "FavoritePokemon")
     }
 
-    @NSManaged public var id: Int64
-    @NSManaged public var weight: Int64
-    @NSManaged public var height: Int64
-    @NSManaged public var urlImage: String?
-    @NSManaged public var name: String?
-    @NSManaged public var types: NSObject?
-    @NSManaged public var stats: NSObject?
-    @NSManaged public var moves: NSObject?
-    @NSManaged public var abilities: NSObject?
+    @NSManaged public var date: Date?
 
 }

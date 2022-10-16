@@ -12,6 +12,8 @@
 		2166F27628F76F0400573634 /* PokemonsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166F27528F76F0400573634 /* PokemonsResponse.swift */; };
 		2166F27928F772F100573634 /* PokemonApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166F27828F772F100573634 /* PokemonApiManager.swift */; };
 		2166F27C28F77BC700573634 /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2166F27B28F77BC700573634 /* PokemonModel.swift */; };
+		2185F78B28FC33330014F5E3 /* FavoritePokemon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185F78928FC33330014F5E3 /* FavoritePokemon+CoreDataProperties.swift */; };
+		2185F78C28FC33330014F5E3 /* FavoritePokemon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185F78A28FC33330014F5E3 /* FavoritePokemon+CoreDataClass.swift */; };
 		21CFBEEA28F9FD4500B6FB3C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21CFBEE928F9FD4500B6FB3C /* Colors.xcassets */; };
 		21CFBEEC28F9FDD200B6FB3C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFBEEB28F9FDD200B6FB3C /* UIColor+Extension.swift */; };
 		21CFBEEF28FA1BAA00B6FB3C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFBEEE28FA1BAA00B6FB3C /* CoreDataManager.swift */; };
@@ -31,8 +33,6 @@
 		21CFBF1828FB209B00B6FB3C /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CFBF1628FB209B00B6FB3C /* FavoriteTableViewCell.xib */; };
 		21CFBF1A28FB24DE00B6FB3C /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFBF1928FB24DE00B6FB3C /* NibLoadableView.swift */; };
 		21CFBF1C28FB2ADE00B6FB3C /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFBF1B28FB2ADE00B6FB3C /* FavoritesViewModel.swift */; };
-		21CFBF2328FB77DF00B6FB3C /* FavoritePokemon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFBF2128FB77DF00B6FB3C /* FavoritePokemon+CoreDataClass.swift */; };
-		21CFBF2428FB77DF00B6FB3C /* FavoritePokemon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CFBF2228FB77DF00B6FB3C /* FavoritePokemon+CoreDataProperties.swift */; };
 		21FF833928F89519006A2DB8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF833828F89519006A2DB8 /* UIImageColors.swift */; };
 		21FF833C28F8AD91006A2DB8 /* PokemonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF833B28F8AD91006A2DB8 /* PokemonDetailViewController.swift */; };
 		21FF833F28F8AEFD006A2DB8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FF833E28F8AEFD006A2DB8 /* Coordinator.swift */; };
@@ -81,6 +81,8 @@
 		2166F27528F76F0400573634 /* PokemonsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonsResponse.swift; sourceTree = "<group>"; };
 		2166F27828F772F100573634 /* PokemonApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonApiManager.swift; sourceTree = "<group>"; };
 		2166F27B28F77BC700573634 /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
+		2185F78928FC33330014F5E3 /* FavoritePokemon+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FavoritePokemon+CoreDataProperties.swift"; path = "/Users/elianocorallo/development/iOS-Pokedex/Pokedex/CoreData/ManagedModel/FavoritePokemon+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		2185F78A28FC33330014F5E3 /* FavoritePokemon+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FavoritePokemon+CoreDataClass.swift"; path = "/Users/elianocorallo/development/iOS-Pokedex/Pokedex/CoreData/ManagedModel/FavoritePokemon+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		21CFBEE928F9FD4500B6FB3C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		21CFBEEB28F9FDD200B6FB3C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		21CFBEEE28FA1BAA00B6FB3C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -100,8 +102,6 @@
 		21CFBF1628FB209B00B6FB3C /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		21CFBF1928FB24DE00B6FB3C /* NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		21CFBF1B28FB2ADE00B6FB3C /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
-		21CFBF2128FB77DF00B6FB3C /* FavoritePokemon+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FavoritePokemon+CoreDataClass.swift"; path = "/Users/elianocorallo/development/iOS-Pokedex/Pokedex/CoreData/ManagedModel/FavoritePokemon+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		21CFBF2228FB77DF00B6FB3C /* FavoritePokemon+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FavoritePokemon+CoreDataProperties.swift"; path = "/Users/elianocorallo/development/iOS-Pokedex/Pokedex/CoreData/ManagedModel/FavoritePokemon+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		21FF833828F89519006A2DB8 /* UIImageColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		21FF833B28F8AD91006A2DB8 /* PokemonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewController.swift; sourceTree = "<group>"; };
 		21FF833E28F8AEFD006A2DB8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -229,8 +229,8 @@
 		21CFBF0228FAE83200B6FB3C /* ManagedModel */ = {
 			isa = PBXGroup;
 			children = (
-				21CFBF2128FB77DF00B6FB3C /* FavoritePokemon+CoreDataClass.swift */,
-				21CFBF2228FB77DF00B6FB3C /* FavoritePokemon+CoreDataProperties.swift */,
+				2185F78A28FC33330014F5E3 /* FavoritePokemon+CoreDataClass.swift */,
+				2185F78928FC33330014F5E3 /* FavoritePokemon+CoreDataProperties.swift */,
 				21CFBF0A28FAF02D00B6FB3C /* Pokemon+CoreDataProperties.swift */,
 				21CFBF0928FAF02D00B6FB3C /* Pokemon+CoreDataClass.swift */,
 				21CFBF0328FAE86B00B6FB3C /* AbilitiesAttributeCoreData.swift */,
@@ -534,7 +534,9 @@
 				21FF835A28F989F3006A2DB8 /* LoaderCell.swift in Sources */,
 				21FF834B28F8CCF2006A2DB8 /* BaseDetailCell.swift in Sources */,
 				2166F27328F76B5600573634 /* NetworkError.swift in Sources */,
+				2185F78C28FC33330014F5E3 /* FavoritePokemon+CoreDataClass.swift in Sources */,
 				21CFBF0E28FB0DC700B6FB3C /* PokemonCoreDataManager.swift in Sources */,
+				2185F78B28FC33330014F5E3 /* FavoritePokemon+CoreDataProperties.swift in Sources */,
 				21FF834928F8C2ED006A2DB8 /* PokemonDetailViewModel.swift in Sources */,
 				21CFBF1328FB1CD400B6FB3C /* FavoriteCoordinator.swift in Sources */,
 				21CFBEEF28FA1BAA00B6FB3C /* CoreDataManager.swift in Sources */,
@@ -571,14 +573,12 @@
 				21FF836528F9B8E7006A2DB8 /* Extension+UIFont.swift in Sources */,
 				21FF833C28F8AD91006A2DB8 /* PokemonDetailViewController.swift in Sources */,
 				5B4F75C028F85DF90027D76B /* UICollectionViewFlowLayout.swift in Sources */,
-				21CFBF2328FB77DF00B6FB3C /* FavoritePokemon+CoreDataClass.swift in Sources */,
 				21CFBF1128FB1CC800B6FB3C /* FavoriteViewController.swift in Sources */,
 				21CFBF0828FAEBDE00B6FB3C /* ItemRespCoreData.swift in Sources */,
 				21CFBF0128FAC31C00B6FB3C /* DataManagerDelegate.swift in Sources */,
 				5BC2A74328F84AAE00D62530 /* TabBarController.swift in Sources */,
 				21FF833F28F8AEFD006A2DB8 /* Coordinator.swift in Sources */,
 				21CFBF0C28FAF02D00B6FB3C /* Pokemon+CoreDataProperties.swift in Sources */,
-				21CFBF2428FB77DF00B6FB3C /* FavoritePokemon+CoreDataProperties.swift in Sources */,
 				21CFBF1728FB209B00B6FB3C /* FavoriteTableViewCell.swift in Sources */,
 				21FF835128F95C51006A2DB8 /* Extension+String.swift in Sources */,
 			);

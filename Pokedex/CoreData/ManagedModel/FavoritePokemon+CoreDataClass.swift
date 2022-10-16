@@ -10,6 +10,5 @@ import Foundation
 import CoreData
 
 
-public class FavoritePokemon: NSManagedObject {
-
+public class FavoritePokemon: Pokemon {
 }
