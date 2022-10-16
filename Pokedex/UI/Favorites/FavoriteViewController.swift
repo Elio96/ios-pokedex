@@ -18,6 +18,16 @@ class FavoriteViewController: UIViewController {
         view.backgroundColor = .white
         title = viewModel.title
         setupTableView()
+        viewModel.favoritesPokemons.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchFavorites()
     }
     
     private func setupTableView() {
@@ -33,11 +43,13 @@ class FavoriteViewController: UIViewController {
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let pokemonModel = viewModel.cellForRowAt(indexPath: indexPath)
         let cell = tableView.dequeueReusableCell(for: indexPath) as FavoriteTableViewCell
+        cell.configure(with: pokemonModel)
         return cell
     }
     

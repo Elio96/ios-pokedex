@@ -24,13 +24,24 @@ class FavoritesViewModel {
     }
     
     func fetchFavorites() {
-        favoriteManager.fetchFromStorage { result in
+        favoriteManager.fetchFromStorage { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let favorites):
-                break
-            case .failure(let error):
+                if let favorites = favorites {
+                    self.favoritesPokemons.value = favorites.compactMap({$0.toModel()})
+                }
+            case .failure(_):
                 break
             }
         }
+    }
+    
+    func numberOfRows() -> Int {
+        return favoritesPokemons.value.count
+    }
+    
+    func cellForRowAt(indexPath: IndexPath) -> PokemonModel {
+        return favoritesPokemons.value[indexPath.row]
     }
 }
