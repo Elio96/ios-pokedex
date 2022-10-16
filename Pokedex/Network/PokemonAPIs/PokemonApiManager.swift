@@ -30,7 +30,7 @@ class PokemonApiManager {
                     let pokemonModel = try await getPokemonDetails(from: pokemonItem.url)
                     pokemonModels.append(pokemonModel)
                 }
-                pokemonCoreDataManager.saveToStorage(models: pokemonModels)
+                pokemonCoreDataManager.saveToStorage(models: pokemonModels, desiredToConvert: Pokemon.self)
                 completion(.success(pokemonModels))
             } catch let error {
                 pokemonCoreDataManager.fetchFromStorage { results in

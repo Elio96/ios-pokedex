@@ -13,3 +13,19 @@ import CoreData
 public class Pokemon: NSManagedObject {
 
 }
+
+extension Pokemon: PokemonManagable {
+    public var dateAdded: Date? {
+        get {
+            return nil
+        }
+        set {
+            self.dateAdded = newValue
+        }
+    }
+    
+    public var entityName: String {
+        return String(describing: self)
+    }
+    
+}

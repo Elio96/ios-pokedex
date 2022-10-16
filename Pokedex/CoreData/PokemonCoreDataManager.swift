@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class PokemonCoreDataManager<T: NSManagedObject> {
+class PokemonCoreDataManager<T: NSManagedObject> where T: PokemonManagable{
     
     private var managedObjectContext: NSManagedObjectContext
     private var entityName: String
@@ -32,6 +32,23 @@ class PokemonCoreDataManager<T: NSManagedObject> {
             print(error.localizedDescription)
         }
     }
+    
+    func clearById(_ id: Int) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: String(describing: T.self))
+        let idPredicate = NSPredicate(format: "id = %ld", id)
+        fetchRequest.predicate = idPredicate
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataManager.shared.persistentContainer
+                .persistentStoreCoordinator
+                .execute(
+                    deleteRequest,
+                    with: CoreDataManager.shared.managedObjectContext
+                )
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 extension PokemonCoreDataManager: DataManagerDelegate {
@@ -40,8 +57,8 @@ extension PokemonCoreDataManager: DataManagerDelegate {
     
     typealias ManagedObject = T
     
-    func saveToStorage(models: [PokemonModel]) {
-        models.convertToManagedObject(managedObjectContext)
+    func saveToStorage(models: [CodableModel], desiredToConvert: PokemonManagable.Type) {
+        models.convertToManagedObject(managedObjectContext, wantsToConvert: desiredToConvert)
         CoreDataManager.shared.saveContext()
     }
     

@@ -33,17 +33,18 @@ class PokemonDetailViewController: UIViewController {
     // this is used to avoid navigation title shrinking when table view is scrolling
     @ProgrammaticallyConstrained private var placeholderView: UIView = UIView()
     
+    private var originalFavTintColor: UIColor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = viewModel.title
         view.backgroundColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(imageAsset: .favoritePokemon), landscapeImagePhone: .init(imageAsset: .favoritePokemon), style: .plain, target: self, action: #selector(handleAddToFavorite(_:)))
         setupConstraints()
         setupTableView()
         viewModel.viewDidLoad()
         setupUI()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .init(imageAsset: .favoritePokemon), landscapeImagePhone: .init(imageAsset: .favoritePokemon), style: .plain, target: self, action: #selector(handleAddToFavorite(_:)))
-//        navigationItem.rightBarButtonItem?.tintColor = .yellow
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,6 +76,8 @@ class PokemonDetailViewController: UIViewController {
         let colorText: UIColor = viewModel.isBright ? .black : .white
         navigationController?.navigationBar.largeTitleTextAttributes?[.foregroundColor] = colorText
         navigationController?.navigationBar.tintColor = colorText
+        originalFavTintColor = colorText
+        navigationItem.rightBarButtonItem?.tintColor = viewModel.isFavoritePokemon ? .yellow : originalFavTintColor
     }
     
     private func setupConstraints() {
@@ -108,7 +111,9 @@ class PokemonDetailViewController: UIViewController {
     }
     
     @objc private func handleAddToFavorite(_ sender: UIBarButtonItem) {
-        navigationItem.rightBarButtonItem?.tintColor = .systemYellow
+        viewModel.handleFavoriteAction { [weak self] event in
+            self?.navigationItem.rightBarButtonItem?.tintColor = event == .added ? .yellow : self?.originalFavTintColor
+        }
     }
     
 }

@@ -25,8 +25,6 @@ extension Pokemon {
     @NSManaged public var moves: PokemonAttributeCoreData?
     @NSManaged public var types: PokemonAttributeCoreData?
     @NSManaged public var stats: PokemonAttributeCoreData?
-    
-    static let entityName = "Pokemon"
 
 }
 

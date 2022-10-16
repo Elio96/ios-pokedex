@@ -18,6 +18,11 @@ struct Section {
     var items: [ItemCell]
 }
 
+enum EventFavorite {
+    case added
+    case removed
+}
+
 class PokemonDetailViewModel {
     
     private var pokemonModel: PokemonModel
@@ -80,6 +85,29 @@ class PokemonDetailViewModel {
         
         tableViewDataSource.append(sectionInfo)
         tableViewDataSource.append(sectionStats)
+    }
+    
+    var isFavoritePokemon: Bool {
+        var contains: Bool = false
+        favoriteManager.fetchFromStorage { [weak self] result in
+            guard let self = self else { return }
+            if case let .success(favorites) = result, let favs = favorites {
+                if favs.contains(where: {$0.id == Int64(self.pokemonModel.id)}) {
+                    contains = true
+                }
+            }
+        }
+        return contains
+    }
+    
+    func handleFavoriteAction(completion: (EventFavorite) -> Void) {
+        if !isFavoritePokemon {
+            favoriteManager.saveToStorage(models: [pokemonModel], desiredToConvert: FavoritePokemon.self)
+            completion(.added)
+        } else {
+            favoriteManager.clearById(pokemonModel.id)
+            completion(.removed)
+        }
     }
     
     func title(for section: Int) -> String? {
