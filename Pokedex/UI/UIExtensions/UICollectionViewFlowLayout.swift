@@ -15,8 +15,8 @@ extension UICollectionViewFlowLayout {
         ReachabilityHandler.isReachable { _ in
             layout.footerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
         }
-        layout.minimumInteritemSpacing = padding
-        layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+//        layout.minimumInteritemSpacing = padding
+        layout.sectionInset = UIEdgeInsets(top: padding, left: padding , bottom: padding, right: padding )
         return layout
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class PokemonListViewController: UIViewController {
     
+    static let ipadSize: CGFloat = 744
+    
     @ProgrammaticallyConstrained private var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.pokemonLayout)
         return collectionView
@@ -71,7 +73,12 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
 
 extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = (collectionView.bounds.width - 60) / 2
+        let size: CGFloat
+        if collectionView.bounds.width >= Self.ipadSize {
+            size = (collectionView.bounds.width - 80) / 3
+        } else {
+            size = (collectionView.bounds.width - 60) / 2
+        }
         return CGSize(width: size, height: size)
     }
 }
