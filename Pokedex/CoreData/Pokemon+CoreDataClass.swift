@@ -16,10 +16,15 @@ public class Pokemon: NSManagedObject {
 
 extension Pokemon: PokemonManagable {
     public var dateAdded: Date? {
-       return nil
+        get {
+            return nil
+        }
+        set {
+            self.dateAdded = newValue
+        }
     }
     
-    public static var entityName: String {
+    public var entityName: String {
         return String(describing: self)
     }
     

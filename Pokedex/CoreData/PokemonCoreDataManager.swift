@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class PokemonCoreDataManager<T: NSManagedObject> {
+class PokemonCoreDataManager<T: NSManagedObject> where T: PokemonManagable{
     
     private var managedObjectContext: NSManagedObjectContext
     private var entityName: String
@@ -40,8 +40,8 @@ extension PokemonCoreDataManager: DataManagerDelegate {
     
     typealias ManagedObject = T
     
-    func saveToStorage(models: [PokemonModel]) {
-        models.convertToManagedObject(managedObjectContext)
+    func saveToStorage(models: [CodableModel], desiredToConvert: PokemonManagable.Type) {
+        models.convertToManagedObject(managedObjectContext, wantsToConvert: desiredToConvert)
         CoreDataManager.shared.saveContext()
     }
     

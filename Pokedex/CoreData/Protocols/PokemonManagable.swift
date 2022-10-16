@@ -17,7 +17,7 @@ import Foundation
     var moves: PokemonAttributeCoreData? { get set }
     var types: PokemonAttributeCoreData? { get set }
     var stats: PokemonAttributeCoreData? { get set }
-    var dateAdded: Date? { get }
+    var dateAdded: Date? { get set }
     
-    static var entityName: String { get }
+    var entityName: String { get }
 }

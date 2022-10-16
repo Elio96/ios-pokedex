@@ -96,11 +96,11 @@ extension PokemonModel {
 //Pokemon Model Core Data
 extension PokemonModel: ManagedObjectConvertible {
     
-    typealias ManagedObject = Pokemon
+    typealias ManagedObject = PokemonManagable
     
     @discardableResult
-    func toManagedObject(in context: NSManagedObjectContext) -> Pokemon? {
-        let entityName = Pokemon.entityName
+    func toManagedObject(in context: NSManagedObjectContext, wantsToConvert: PokemonManagable) -> PokemonManagable? {
+        let entityName = wantsToConvert.entityName
         guard let entityDescription = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
             print("Can't create entity \(entityName)")
             return nil
@@ -119,13 +119,17 @@ extension PokemonModel: ManagedObjectConvertible {
         object.types = PokemonAttributeCoreData(attributes: types)
         let stats: [AttributeCoreData] = self.stats.map({AttributeCoreData(name: $0.stat.name, url: $0.stat.url, baseStat: $0.baseStat)})
         object.stats = PokemonAttributeCoreData(attributes: stats)
+        if wantsToConvert is FavoritePokemon {
+            object.dateAdded = Date()
+        }
         return object
     }
 }
 
 extension PokemonsModel {
     
-    func convertToManagedObject(_ managedObjectContext: NSManagedObjectContext) {
-        forEach { $0.toManagedObject(in: managedObjectContext) }
+    func convertToManagedObject<T>(_ managedObjectContext: NSManagedObjectContext, wantsToConvert: T) {
+        guard let wantsToConvert = wantsToConvert as? PokemonManagable else { return }
+        forEach { $0.toManagedObject(in: managedObjectContext, wantsToConvert: wantsToConvert) }
     }
 }
