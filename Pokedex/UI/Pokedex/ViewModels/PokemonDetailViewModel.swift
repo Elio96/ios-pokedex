@@ -82,6 +82,25 @@ class PokemonDetailViewModel {
         tableViewDataSource.append(sectionStats)
     }
     
+    var isFavoritePokemon: Bool {
+        var contains: Bool = false
+        favoriteManager.fetchFromStorage { [weak self] result in
+            guard let self = self else { return }
+            if case let .success(favorites) = result, let favs = favorites {
+                if favs.contains(where: {$0.id == Int64(self.pokemonModel.id)}) {
+                    contains = true
+                }
+            }
+        }
+        return contains
+    }
+    
+    func handleFavoriteAction() {
+        if !isFavoritePokemon {
+            favoriteManager.saveToStorage(models: [pokemonModel], desiredToConvert: FavoritePokemon.self)
+        }
+    }
+    
     func title(for section: Int) -> String? {
         return tableViewDataSource[section].title
     }
