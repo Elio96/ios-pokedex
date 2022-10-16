@@ -53,5 +53,9 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cell(at: indexPath) as FavoriteTableViewCell
+        viewModel.selectItem(at: indexPath, image: cell.pokemonImage.image)
+    }
     
 }

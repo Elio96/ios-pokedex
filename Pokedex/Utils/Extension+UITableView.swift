@@ -8,6 +8,14 @@
 import UIKit
 
 extension UITableView {
+    
+    func cell<Cell: UITableViewCell>(at indexPath: IndexPath) -> Cell {
+        guard let cellItem = cellForRow(at: indexPath) as? Cell else {
+            fatalError("Cell not found: \(Cell.self)")
+        }
+        return cellItem
+    }
+    
     func register<T: UITableViewCell>(_: T.Type) where T: ReusableView {
         register(T.self, forCellReuseIdentifier: T.defaultReuseIdentifier)
     }

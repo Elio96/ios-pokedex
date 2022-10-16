@@ -5,7 +5,7 @@
 //  Created by Eliano Corallo on 15/10/22.
 //
 
-import Foundation
+import UIKit
 
 class FavoritesViewModel {
     weak var coordinator: FavoriteCoordinator?
@@ -43,5 +43,10 @@ class FavoritesViewModel {
     
     func cellForRowAt(indexPath: IndexPath) -> PokemonModel {
         return favoritesPokemons.value[indexPath.row]
+    }
+    
+    func selectItem(at indexPath: IndexPath, image: UIImage?) {
+        let pokemon = favoritesPokemons.value[indexPath.row]
+        coordinator?.startPokemonDetailViewController(with: pokemon, image: image)
     }
 }

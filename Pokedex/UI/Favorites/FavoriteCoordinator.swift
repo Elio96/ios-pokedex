@@ -37,4 +37,16 @@ class FavoriteCoordinator: Coordinator {
         navigationController?.setViewControllers([favoriteVC], animated: true)
     }
     
+    private func buildPokemonDetailViewController(with pokemon: PokemonModel, image: UIImage?) -> PokemonDetailViewController {
+        let pokemonDetailVC = PokemonDetailViewController()
+        let pokemonDetailViewModel = PokemonDetailViewModel(from: pokemon, imagePokemon: image)
+        pokemonDetailVC.viewModel = pokemonDetailViewModel
+        return pokemonDetailVC
+    }
+    
+    func startPokemonDetailViewController(with pokemon: PokemonModel, image: UIImage?) {
+        let pokemonDetailVC = buildPokemonDetailViewController(with: pokemon, image: image)
+        self.navigationController?.pushViewController(pokemonDetailVC, animated: true)
+    }
+    
 }
