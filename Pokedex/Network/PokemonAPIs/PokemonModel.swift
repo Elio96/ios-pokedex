@@ -105,7 +105,13 @@ extension PokemonModel: ManagedObjectConvertible {
             print("Can't create entity \(entityName)")
             return nil
         }
-        let object = Pokemon(entity: entityDescription, insertInto: context)
+        let object: PokemonManagable
+        if wantsToConvert is FavoritePokemon {
+            object = FavoritePokemon(entity: entityDescription, insertInto: context)
+            object.dateAdded = Date()
+        } else {
+            object = Pokemon(entity: entityDescription, insertInto: context)
+        }
         object.id = Int64(id)
         object.name = name
         object.weight = Int64(weight)
@@ -119,9 +125,6 @@ extension PokemonModel: ManagedObjectConvertible {
         object.types = PokemonAttributeCoreData(attributes: types)
         let stats: [AttributeCoreData] = self.stats.map({AttributeCoreData(name: $0.stat.name, url: $0.stat.url, baseStat: $0.baseStat)})
         object.stats = PokemonAttributeCoreData(attributes: stats)
-        if wantsToConvert is FavoritePokemon {
-            object.dateAdded = Date()
-        }
         return object
     }
 }

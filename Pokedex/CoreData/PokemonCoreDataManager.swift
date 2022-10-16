@@ -32,6 +32,23 @@ class PokemonCoreDataManager<T: NSManagedObject> where T: PokemonManagable{
             print(error.localizedDescription)
         }
     }
+    
+    func clearById(_ id: Int) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: String(describing: T.self))
+        let idPredicate = NSPredicate(format: "id = %ld", id)
+        fetchRequest.predicate = idPredicate
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataManager.shared.persistentContainer
+                .persistentStoreCoordinator
+                .execute(
+                    deleteRequest,
+                    with: CoreDataManager.shared.managedObjectContext
+                )
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
 }
 
 extension PokemonCoreDataManager: DataManagerDelegate {

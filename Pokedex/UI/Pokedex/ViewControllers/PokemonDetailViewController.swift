@@ -111,7 +111,9 @@ class PokemonDetailViewController: UIViewController {
     }
     
     @objc private func handleAddToFavorite(_ sender: UIBarButtonItem) {
-        viewModel.handleFavoriteAction()
+        viewModel.handleFavoriteAction { [weak self] event in
+            self?.navigationItem.rightBarButtonItem?.tintColor = event == .added ? .yellow : self?.originalFavTintColor
+        }
     }
     
 }

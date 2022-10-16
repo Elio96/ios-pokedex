@@ -18,6 +18,11 @@ struct Section {
     var items: [ItemCell]
 }
 
+enum EventFavorite {
+    case added
+    case removed
+}
+
 class PokemonDetailViewModel {
     
     private var pokemonModel: PokemonModel
@@ -95,9 +100,13 @@ class PokemonDetailViewModel {
         return contains
     }
     
-    func handleFavoriteAction() {
+    func handleFavoriteAction(completion: (EventFavorite) -> Void) {
         if !isFavoritePokemon {
             favoriteManager.saveToStorage(models: [pokemonModel], desiredToConvert: FavoritePokemon.self)
+            completion(.added)
+        } else {
+            favoriteManager.clearById(pokemonModel.id)
+            completion(.removed)
         }
     }
     

@@ -10,5 +10,5 @@ import Foundation
 import CoreData
 
 
-public class FavoritePokemon: Pokemon {
+public class FavoritePokemon: NSManagedObject {
 }
