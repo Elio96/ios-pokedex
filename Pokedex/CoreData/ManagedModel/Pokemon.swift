@@ -45,6 +45,7 @@ extension Pokemon: PokemonManagable {
 }
 
 extension Pokemon: ModelConvertible {
+    //It convert the pokemon managed object to PokemonModel
     func toModel() -> PokemonModel? {
         guard let abilities = self.abilities?.attributes?.map({Ability.init(ability: ItemResp.init(name: $0.name ?? "", url: $0.url ?? ""))}),
               let types = self.types?.attributes?.map({Type.init(type: ItemResp.init(name: $0.name ?? "", url: $0.url ?? ""))}),

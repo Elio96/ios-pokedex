@@ -18,6 +18,7 @@ final class PokemonViewModel {
         return "Pokedex"
     }
     
+    //is a proprerty which can stop a series of network calls if loading is not completed
     private var inLoading: Bool = false
     
     func getPokemon() {

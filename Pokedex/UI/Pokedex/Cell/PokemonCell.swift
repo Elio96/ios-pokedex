@@ -67,7 +67,6 @@ class PokemonCell: UICollectionViewCell, ReusableView {
                     self?.contentView.backgroundColor = imageDominantColor
                     self?.pokemonTitle.textColor = imageDominantColor.isBright ? .black : .white
                 case .failure(let err):
-//                    AlertHandler.show(title: "Errore", message: err.localizedDescription)
                     print(err.localizedDescription)
                 }
             }

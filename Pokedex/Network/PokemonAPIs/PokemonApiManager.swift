@@ -18,10 +18,14 @@ class PokemonApiManager {
         self.pokemonCoreDataManager = PokemonCoreDataManager(managedObjectContext: CoreDataManager.shared.managedObjectContext)
     }
     
+    //store the current response and is used to call the new pokemon with "next" url updated
     private var pokemonsResponse: PokemonsResponse?
     
+    //is a property that download the core data items once
     private var offlineJustLoaded: Bool = false
     
+    //Fetch the complete list of pokemons combining the two network calls below if the internet connection is reachable
+    //Otherwise, fetch the pokemons saved in CoreData
     func fetchPokemons(_ completion: @escaping (Result<[PokemonModel], Error>) -> Void) {
         ReachabilityHandler.isUnreachable { [weak self] _ in
             guard let self = self, !self.offlineJustLoaded else { return }
@@ -58,6 +62,7 @@ class PokemonApiManager {
         }
     }
     
+    //Fetch the current pokemon details with given url
     private func getPokemonDetails(from url: String) async throws -> PokemonModel {
         guard let url = URL(string: url) else { throw NSError(domain: "Error parsing url", code: -1) }
         let request = URLRequest(url: url)
@@ -73,6 +78,8 @@ class PokemonApiManager {
         })
     }
     
+    //It fetch the main pokemon object with the url passed as parameter
+    //if url is nil, fetch the first object with the standard url
     private func getPokemons(url: String?) async throws -> PokemonsResponse {
         let reqURL: URL
         if let urlString = url, let url = URL(string: urlString) {

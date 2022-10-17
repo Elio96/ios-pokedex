@@ -33,6 +33,7 @@ class PokemonDetailViewController: UIViewController {
     // this is used to avoid navigation title shrinking when table view is scrolling
     @ProgrammaticallyConstrained private var placeholderView: UIView = UIView()
     
+    //it store the original color of add to favorite button
     private var originalFavTintColor: UIColor?
     
     override func viewDidLoad() {

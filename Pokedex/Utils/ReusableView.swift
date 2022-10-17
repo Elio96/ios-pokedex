@@ -7,6 +7,7 @@
 
 import UIKit
 
+//is a protocol which define the defaultReuseIdentifier
 protocol ReusableView: AnyObject {
     static var defaultReuseIdentifier: String { get }
     

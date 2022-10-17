@@ -131,6 +131,7 @@ extension PokemonModel: ManagedObjectConvertible {
 
 extension PokemonsModel {
     
+    //convert each element inside array of PokemonModel into managed object passed as parameter
     func convertToManagedObject<T>(_ managedObjectContext: NSManagedObjectContext, wantsToConvert: T) {
         guard let wantsToConvert = wantsToConvert as? PokemonManagable else { return }
         forEach { $0.toManagedObject(in: managedObjectContext, wantsToConvert: wantsToConvert) }

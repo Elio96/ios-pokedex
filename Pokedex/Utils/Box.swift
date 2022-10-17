@@ -7,6 +7,7 @@
 
 import Foundation
 
+//is an object used to observe a value
 final class Box<T> {
     
     typealias Listener = (T) -> Void
@@ -22,6 +23,7 @@ final class Box<T> {
         self.value = value
     }
     
+    //trigger an event in the listener which call this function when the value change
     func bind(listener: @escaping Listener) {
         self.listeners.append(listener)
         listener(value)

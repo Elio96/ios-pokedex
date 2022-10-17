@@ -102,6 +102,7 @@ class TabBarCoordinator: TabCoordinatorProtocol {
         TabBarPage(index: tabBarController.selectedIndex)
     }
     
+    // it build a navigation controller for each tab bar item and start the related coordinator
     private func getTabBarController(_ page: TabBarPage) -> UINavigationController {
         let navController = UINavigationController()
         switch page {

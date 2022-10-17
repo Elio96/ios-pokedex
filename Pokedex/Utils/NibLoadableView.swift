@@ -7,6 +7,7 @@
 
 import UIKit
 
+//this protocol is used to load the xib file without indicate the nib name
 protocol NibLoadableView: AnyObject {
     static var nibName: String { get }
 }

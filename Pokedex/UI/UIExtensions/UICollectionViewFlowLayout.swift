@@ -8,6 +8,7 @@
 import UIKit
 
 extension UICollectionViewFlowLayout {
+    //this is the pokemon layout used in collection view
     static var pokemonLayout: UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         let padding: CGFloat = 20.0
@@ -15,7 +16,6 @@ extension UICollectionViewFlowLayout {
         ReachabilityHandler.isReachable { _ in
             layout.footerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 100)
         }
-//        layout.minimumInteritemSpacing = padding
         layout.sectionInset = UIEdgeInsets(top: padding, left: padding , bottom: padding, right: padding )
         return layout
     }

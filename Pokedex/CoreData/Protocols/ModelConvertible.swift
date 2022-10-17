@@ -7,6 +7,7 @@
 
 import Foundation
 
+//Is used to convert a NSManagedObject to generic model
 protocol ModelConvertible {
     associatedtype Model
     

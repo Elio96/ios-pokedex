@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+//Is used to convert a generic model to NSManagedObject
 protocol ManagedObjectConvertible {
     associatedtype ManagedObject
     

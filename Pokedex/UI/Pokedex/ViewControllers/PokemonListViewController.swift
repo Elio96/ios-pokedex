@@ -9,7 +9,7 @@ import UIKit
 
 class PokemonListViewController: UIViewController {
     
-    static let ipadSize: CGFloat = 744
+    static let minimumipadSize: CGFloat = 744
     
     @ProgrammaticallyConstrained private var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.pokemonLayout)
@@ -74,7 +74,7 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
 extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size: CGFloat
-        if collectionView.bounds.width >= Self.ipadSize {
+        if collectionView.bounds.width >= Self.minimumipadSize {
             size = (collectionView.bounds.width - 80) / 3
         } else {
             size = (collectionView.bounds.width - 60) / 2
@@ -89,6 +89,7 @@ extension PokemonListViewController {
         let contentYOffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYOffset
         
+        //this is the distance required to fetch new pokemon when scroll view is next to the end of scroll
         if distanceFromBottom < (height * 1.5) {
             self.loader.animate() 
             viewModel.getPokemon()
