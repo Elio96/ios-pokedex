@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+public class FavoritePokemon: NSManagedObject {}
 
 extension FavoritePokemon {
 
